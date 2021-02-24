@@ -3,6 +3,7 @@ from io import BytesIO
 import requests
 from PIL import Image
 from django.core.files import File
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
@@ -86,3 +87,11 @@ class NewImageView(View):
             form.data['url'] = None
             form.add_error('url', 'Заполните только одно поле!')
         return render(request, "imageresizer/add-image.html", context={"form": form})
+
+
+def custom_handler_404(request, exception):
+    return HttpResponseNotFound('<center><h1>Ничего не нашлось! Ошибка 404!</h1></center>')
+
+
+def custom_handler_500(request):
+    return HttpResponseNotFound('<center><h1>Вы сломали сервер! Ошибка 500!</h1></center>')

@@ -27,6 +27,9 @@ urlpatterns = [
     path('resize/<int:pk>', imageresizer.views.ResizeView.as_view(), name="ResizeView"),
 ]
 
+handler404 = imageresizer.views.custom_handler_404
+handler500 = imageresizer.views.custom_handler_500
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
