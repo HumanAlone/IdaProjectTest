@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image resizer</title>
+</head>
+<body>
+<h1>Список изображений</h1>
+{% if images|length == 0 %}
+    <p>Нет доступных изображений</p>
+{% endif %}
+{% for image in images %}
+    <p><a href="{% url "ResizeView" image.id %}">{{ image.image.name }}</a></p>
+{% endfor %}
+<a href="{% url "AddView" %}">Добавить изображение</a>
+</body>
+</html>

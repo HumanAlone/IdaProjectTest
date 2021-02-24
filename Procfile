@@ -1,0 +1,1 @@
+web: gunicorn IdaProjectTest.wsgi
